@@ -23,7 +23,7 @@ function gap() {
       var layer;
       var match = false;
 
-      while(match !== true && layerId <= layers.length) {
+      while(match !== true && layerId < layers.length) {
         layer = layers[layerId++];
         match = layer.regExp.test(req.url);
       }
@@ -31,6 +31,7 @@ function gap() {
       if (!match) {
         res.write('404');
         res.end();
+        return;
       }
 
       layer.handler(req, res, next);
